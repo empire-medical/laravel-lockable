@@ -19,10 +19,6 @@ trait IsLockable
 
     public static function bootIsLockable()
     {
-        if (config('laravel-lockable.get_locked_on_retrieve', true)) {
-            $this->with[] = 'lockable';
-        }
-
         if (config('laravel-lockable.prevent_updating', true)) {
             static::updating(function (Model $model) {
                 // are we currently acquiring the lock
