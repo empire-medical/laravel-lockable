@@ -86,7 +86,6 @@ trait IsLockable
 
         $lock = $this->lockable()->firstOrNew();
         $lock->user_id = Auth::id();
-        $lock->user_type = get_class(Auth::user());
 
         $lock->expires_at = Carbon::now()->addSeconds($this->lockDuration);
         $lock->save();
