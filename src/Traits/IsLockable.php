@@ -81,7 +81,7 @@ trait IsLockable
         }
 
         if (! isset($this->lockDuration)) {
-            $this->lockDuration = (isset($this->modelLockDuration) ? $this->modelLockDuration : config('lockable.duration', '3600'));
+            $this->lockDuration = (isset($this->modelLockDuration) ? $this->modelLockDuration : config('lockable.duration', 3600));
         }
 
         $lock = $this->lockable()->firstOrNew();
