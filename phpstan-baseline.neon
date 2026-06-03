@@ -1,0 +1,19 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^PHPDoc tag @property\-read for property LowerRockLabs\\Lockable\\Models\\ModelLock\:\:\$user contains unknown class App\\Models\\User\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Models/ModelLock.php
+
+		-
+			message: '#^PHPDoc type array of property LowerRockLabs\\Lockable\\Models\\ModelLock\:\:\$dispatchesEvents is not covariant with PHPDoc type array\<string, class\-string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$dispatchesEvents\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/Models/ModelLock.php
+
+		-
+			message: '#^Trait LowerRockLabs\\Lockable\\Traits\\IsLockable is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Traits/IsLockable.php
