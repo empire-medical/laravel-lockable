@@ -2,6 +2,7 @@
 
 namespace LowerRockLabs\Lockable\Tests;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LowerRockLabs\Lockable\LockableServiceProvider;
 use LowerRockLabs\Lockable\Tests\Models\Admin;
@@ -16,7 +17,9 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->withFactories(__DIR__.'/database/factories');
+        Factory::guessFactoryNamesUsing(function (string $modelName) {
+            return 'LowerRockLabs\\Lockable\\Tests\\Database\\Factories\\'.class_basename($modelName).'Factory';
+        });
     }
 
     /**
