@@ -30,13 +30,6 @@ class TestCase extends Orchestra
     protected function defineDatabaseMigrations()
     {
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->artisan('migrate', ['--database' => 'testbench'])->run();
-
-        $this->loadLaravelMigrations(['--database' => 'testbench']);
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->artisan('migrate:rollback', ['--database' => 'testbench'])->run();
-        });
     }
 
     /**
@@ -96,13 +89,5 @@ class TestCase extends Orchestra
             'driver' => 'session',
             'provider' => 'admins',
         ]);
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-lockable_table.php.stub';
-        $migration->up();sff
-        */
     }
 }

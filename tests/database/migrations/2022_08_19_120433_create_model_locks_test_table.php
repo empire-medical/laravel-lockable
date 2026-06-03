@@ -23,6 +23,16 @@ class CreateModelLocksTestTable extends Migration
             $table->unique(['lockable_id', 'lockable_type'], 'lockable_unique');
         });
 
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
@@ -61,5 +71,7 @@ class CreateModelLocksTestTable extends Migration
         Schema::dropIfExists('model_locks');
         Schema::dropIfExists('model_lock_watchers');
         Schema::dropIfExists('notes');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('admins');
     }
 }
