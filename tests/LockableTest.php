@@ -84,7 +84,7 @@ class LockableTest extends TestCase
 
         $lock = $note->lockable()->firstOrNew();
         $lock->user_id = Auth::id();
-        $lock->expires_at = Carbon::now()->addSeconds('3600');
+        $lock->expires_at = Carbon::now()->addSeconds(3600);
         $lock->save();
 
         $note->update(['title' => 'Test Note 1']);
@@ -138,7 +138,7 @@ class LockableTest extends TestCase
         $lock->user_id = Auth::id();
         $lock->user_type = get_class(Auth::user());
 
-        $lock->expires_at = Carbon::now()->addSeconds('3600');
+        $lock->expires_at = Carbon::now()->addSeconds(3600);
         $lock->save();
 
         $user3 = User::factory()->create();
@@ -169,7 +169,7 @@ class LockableTest extends TestCase
         $lock = $note->lockable()->firstOrNew();
         $lock->user_id = Auth::id();
         $lock->user_type = get_class($admin);
-        $lock->expires_at = Carbon::now()->addSeconds('3600');
+        $lock->expires_at = Carbon::now()->addSeconds(3600);
         $lock->save();
         $note->update(['title' => 'Test Note 1']);
         $note->save();
@@ -213,7 +213,7 @@ class LockableTest extends TestCase
         $user1id = Auth::id();
         $lock->user_id = Auth::id();
         $lock->user_type = get_class(Auth::user());
-        $lock->expires_at = Carbon::now()->addSeconds('3600');
+        $lock->expires_at = Carbon::now()->addSeconds(3600);
         $lock->save();
         $this->assertModelExists($note);
         $noteid = $note->id;
@@ -253,7 +253,7 @@ class LockableTest extends TestCase
         $lock = $note->lockable()->firstOrNew();
         $lock->user_id = Auth::id();
         $lock->user_type = get_class(Auth::user());
-        $lock->expires_at = Carbon::now()->subSeconds('3600');
+        $lock->expires_at = Carbon::now()->subSeconds(3600);
         $lock->save();
 
         $user2 = User::factory()->create();
@@ -293,9 +293,9 @@ class LockableTest extends TestCase
         Auth::login($user1);
 
         $note = Note::factory()->create();
-        $note->modelLockDuration = '8000';
+        $note->modelLockDuration = 8000;
         $note->acquireLock();
-        $this->assertTrue(Carbon::now()->addSeconds('4000')->lte($note->lockable->expires_at));
+        $this->assertTrue(Carbon::now()->addSeconds(4000)->lte($note->lockable->expires_at));
     }
 
     #[Test]
@@ -345,7 +345,7 @@ class LockableTest extends TestCase
         $lock = $note2->lockable()->firstOrNew();
         $lock->user_id = Auth::id();
         $lock->user_type = get_class(Auth::user());
-        $lock->expires_at = Carbon::now()->subSeconds('9000');
+        $lock->expires_at = Carbon::now()->subSeconds(9000);
         $lock->save();
 
         $this->artisan('locks:flushexpired')->assertExitCode(0);

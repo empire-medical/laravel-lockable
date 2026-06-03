@@ -11,7 +11,7 @@ class Note extends Model
     use HasFactory;
     use IsLockable;
 
-    public $modelLockDuration = '3600';
+    public $modelLockDuration = 3600;
 
     /**
      * The attributes that are mass assignable.
